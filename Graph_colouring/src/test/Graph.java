@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class Graph {
 	private int Ver; // Poèet vrcholù
-	private LinkedList<Integer> adjLst[]; // List pro sousedící vrcholy 
+	private LinkedList<Integer> adjLst[]; // List pro sousedící vrcholy
 
 	// Constructor
 	Graph(int ver) {
@@ -19,15 +19,16 @@ public class Graph {
 	// Funkce pro øidání hran do grafu, ochrana proti dvojtýmu pøidání
 	// Vznikne neorientovaný graf
 	void addEdge(int x, int y) {
-		if(!adjLst[x].contains(y) || !adjLst[y].contains(x)) {
+		if (!adjLst[x].contains(y) || !adjLst[y].contains(x)) {
 			adjLst[x].add(y);
-			adjLst[y].add(x); 
+			adjLst[y].add(x);
 		}
 	}
 
-	// Pøiøazení barev  greedy algoritmem, zaèíná od 0, díky našemu øazení zaèíná od vrcholu s nejvíce hranami
+	// Pøiøazení barev greedy algoritmem, zaèíná od 0, díky našemu øazení zaèíná od
+	// vrcholu s nejvíce hranami
 	void greedyColoring() {
-		int red = 0;
+		int red = 1;
 		int blue = 0;
 		int green = 0;
 		int yel = 0;
@@ -40,9 +41,9 @@ public class Graph {
 		// Pøiøazení první barvy vrcholu 0
 		result[0] = 0;
 
-		// Doèasné pole, kde se ukládají dostupné barvy. Hodnota False znamená, 
+		// Doèasné pole, kde se ukládají dostupné barvy. Hodnota False znamená,
 		// že barva byla pøidìlena sousednímu vrcholu
-		
+
 		boolean avlClr[] = new boolean[Ver];
 
 		// Celé pole má hodntu True, to znamená že jsou dosupné všechny barvy.
@@ -60,7 +61,7 @@ public class Graph {
 
 			// Najdeprvní dostupnou barvu
 			int cr;
-			
+
 			for (cr = 0; cr < Ver; cr++) {
 				if (avlClr[cr])
 					break;
@@ -69,26 +70,23 @@ public class Graph {
 			if (cr == 0) {
 				red++;
 				result[u] = cr; // Pøiøadí nalezenou barvu
-			}
-			else if (cr == 1 ) {
+			} else if (cr == 1) {
 				blue++;
 				result[u] = cr; // Pøiøadí nalezenou barvu
-			}
-			else if (cr == 2) {
+			} else if (cr == 2) {
 				green++;
 				result[u] = cr; // Pøiøadí nalezenou barvu
-			}
-			else if (cr == 3) {
+			} else if (cr == 3) {
 				yel++;
 				result[u] = cr; // Pøiøadí nalezenou barvu
 			}
-			
+
 			else {
 				un++;
-				result[u] = cr; // Pøiøadí nalezenou barvu, 
-								// toto je záchytná podmínka, která nastane pokud je pøekroèen maximální poèet barev.
+				result[u] = cr; // Pøiøadí nalezenou barvu,
+								// toto je záchytná podmínka, která nastane pokud je pøekroèen maximální poèet
+								// barev.
 			}
-			
 
 			// Vrátí hodnoty pole na true, umožní další iteraci.
 			Arrays.fill(avlClr, true);
@@ -96,12 +94,13 @@ public class Graph {
 
 		// Vytiskne výsledky
 		for (int u = 0; u < Ver; u++)
-			System.out.println("Vertex " + u + " --->  Color " + result[u]);
-		System.out.println(red +1);
-		System.out.println(blue);
-		System.out.println(green);
-		System.out.println(yel);
-		System.out.println(un);
+			System.out.println("Vrchol " + u + " --->  èíslo barvy " + result[u]);
+		System.out.println("Celkový poèet vrcholù pro jednotlivé barvy.");
+		System.out.println("Èervená: " + red);
+		System.out.println("Modrá: " + blue);
+		System.out.println("Zelená: " + green);
+		System.out.println("Žlutá: " + yel);
+		System.out.println("Nezaøazeno: " + un);
 
 	}
 }

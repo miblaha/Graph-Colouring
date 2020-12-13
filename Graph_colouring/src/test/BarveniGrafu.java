@@ -91,7 +91,7 @@ public class BarveniGrafu {
 		Collections.sort(lectures, Collections.reverseOrder());
 
 		for (Lectures x : lectures) {
-			 System.out.println(x.getID());
+			 System.out.println("ID Pøedmìtu: " + x.getID() + " 	Jméno pøedmìtu: " + x.getName());
 			for (int y : x.getClashes()) {
 				g.addEdge(x.getID(), y);
 				// System.out.println(x.getID()+","+y);
