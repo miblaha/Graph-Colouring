@@ -3,7 +3,7 @@ package test;
 import java.util.LinkedList;
 
 // Objekt Lecturec, s parametry a pomocnými funkcemi.
-public class Lectures implements Comparable<Lectures>{
+public class Lectures implements Comparable<Lectures> {
 
 	public int ID;
 	public String Name;
